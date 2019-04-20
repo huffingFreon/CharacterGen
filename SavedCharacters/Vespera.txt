@@ -1,0 +1,5 @@
+Name: Vespera
+Alignment: Neutral Evil
+Race: Dragonborn
+Class: Wizard
+Background: Hermit
