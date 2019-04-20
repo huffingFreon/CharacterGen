@@ -43,12 +43,14 @@ public class mkWindow extends JFrame
         buttonPanel = new JPanel();
         buttonPanel.add(generate);
         buttonPanel.add(export);
+        ImageIcon icon = new ImageIcon("CharacterPortraits/dnd.png");
 
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
+        setIconImage(icon.getImage());
         add(info, BorderLayout.WEST);
         add(buttonPanel, BorderLayout.SOUTH);
         add(portrait, BorderLayout.EAST);
