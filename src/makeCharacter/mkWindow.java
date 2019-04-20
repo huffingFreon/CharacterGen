@@ -27,6 +27,7 @@ public class mkWindow extends JFrame
     private UserCharacter c;
     private JButton generate;
     private JButton export;
+    private JButton importButton;
     private JPanel buttonPanel;
 
 	public mkWindow()
@@ -40,9 +41,12 @@ public class mkWindow extends JFrame
         generate.addActionListener(new GenerateListener());
         export = new JButton("Export");
         export.addActionListener(new ExportListener());
+        importButton = new JButton("Import");
+        importButton.addActionListener(new ImportListener());
         buttonPanel = new JPanel();
         buttonPanel.add(generate);
         buttonPanel.add(export);
+        buttonPanel.add(importButton);
         ImageIcon icon = new ImageIcon("CharacterPortraits/dnd.png");
 
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -83,6 +87,29 @@ public class mkWindow extends JFrame
                 c.saveCharacter();
             }
             catch(FileNotFoundException f)
+            {
+                JOptionPane.showMessageDialog(null, f.getMessage());
+            }
+        }
+    }
+
+    private class ImportListener implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            try
+            {
+                remove(info);
+                remove(portrait);
+                c.loadCharacter();
+                info = new InfoPanel(c);
+                portrait = new CharacterPortrait(c);
+                add(info, BorderLayout.WEST);
+                add(portrait, BorderLayout.EAST);
+                validate();
+                repaint();
+            }
+            catch (FileNotFoundException f)
             {
                 JOptionPane.showMessageDialog(null, f.getMessage());
             }

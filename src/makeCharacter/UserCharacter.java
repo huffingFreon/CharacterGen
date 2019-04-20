@@ -189,9 +189,9 @@ public class UserCharacter
     public void saveCharacter() throws FileNotFoundException
     {
        JFileChooser save = new JFileChooser("SavedCharacters");
-       int result = save.showSaveDialog(null);
+       int iResult = save.showSaveDialog(null);
 
-       if(result != JFileChooser.APPROVE_OPTION)
+       if(iResult != JFileChooser.APPROVE_OPTION)
        {
            JOptionPane.showMessageDialog(null, "No file selected");
        }
@@ -200,13 +200,44 @@ public class UserCharacter
           String fileName = save.getSelectedFile().getPath();
           PrintWriter pw = new PrintWriter(fileName);
 
-          pw.println("Name: "+ getName());
-          pw.println("Alignment: "+ getAlignment());
-          pw.println("Race: "+ getRace());
-          pw.println("Class: "+ getChClass());
-          pw.println("Background: "+ getBackground());
+          pw.println(getName());
+          pw.println(getAlignment());
+          pw.println(getRace());
+          pw.println(getChClass());
+          pw.println(getBackground());
 
           pw.close();
        }
+    }
+
+    public void loadCharacter() throws FileNotFoundException
+    {
+        JFileChooser open = new JFileChooser("SavedCharacters");
+        int iResult = open.showOpenDialog(null);
+        ArrayList<String> lines = new ArrayList<>();
+
+        if(iResult != JFileChooser.APPROVE_OPTION)
+        {
+            JOptionPane.showMessageDialog(null, "No file selected");
+        }
+        else
+        {
+           String fileName = open.getSelectedFile().getPath();
+           File loadFIle = new File(fileName);
+           Scanner load = new Scanner(loadFIle);
+
+           while(load.hasNext())
+           {
+               lines.add(load.nextLine());
+           }
+
+           setName(lines.get(0));
+           setAlignment(lines.get(1));
+           setRace(lines.get(2));
+           setClass(lines.get(3));
+           setBackground(lines.get(4));
+
+           load.close();
+        }
     }
 }
