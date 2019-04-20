@@ -14,6 +14,7 @@ package makeCharacter;
 import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -185,8 +186,27 @@ public class UserCharacter
         return strAlignment;
     }
 
-    public void saveCharacter()
+    public void saveCharacter() throws FileNotFoundException
     {
-        //TODO: Save character to a text file
+       JFileChooser save = new JFileChooser("SavedCharacters");
+       int result = save.showSaveDialog(null);
+
+       if(result != JFileChooser.APPROVE_OPTION)
+       {
+           JOptionPane.showMessageDialog(null, "No file selected");
+       }
+       else
+       {
+          String fileName = save.getSelectedFile().getPath();
+          PrintWriter pw = new PrintWriter(fileName);
+
+          pw.println("Name: "+ getName());
+          pw.println("Alignment: "+ getAlignment());
+          pw.println("Race: "+ getRace());
+          pw.println("Class: "+ getChClass());
+          pw.println("Background: "+ getBackground());
+
+          pw.close();
+       }
     }
 }

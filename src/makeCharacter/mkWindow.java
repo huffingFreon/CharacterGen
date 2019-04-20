@@ -15,6 +15,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 
 public class mkWindow extends JFrame
 {
@@ -38,6 +39,7 @@ public class mkWindow extends JFrame
         generate = new JButton("Generate!");
         generate.addActionListener(new GenerateListener());
         export = new JButton("Export");
+        export.addActionListener(new ExportListener());
         buttonPanel = new JPanel();
         buttonPanel.add(generate);
         buttonPanel.add(export);
@@ -60,13 +62,28 @@ public class mkWindow extends JFrame
         {
             remove(info);
             remove(portrait);
-            UserCharacter d = new UserCharacter();
-            info = new InfoPanel(d);
-            portrait = new CharacterPortrait(d);
+            c = new UserCharacter();
+            info = new InfoPanel(c);
+            portrait = new CharacterPortrait(c);
             add(info, BorderLayout.WEST);
             add(portrait, BorderLayout.EAST);
             validate();
             repaint();
+        }
+    }
+
+    private class ExportListener implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            try
+            {
+                c.saveCharacter();
+            }
+            catch(FileNotFoundException f)
+            {
+                JOptionPane.showMessageDialog(null, f.getMessage());
+            }
         }
     }
 }
