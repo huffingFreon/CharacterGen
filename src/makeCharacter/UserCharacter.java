@@ -108,7 +108,7 @@ public class UserCharacter
 
         fileScanner.close();
 
-        strName = lines.get(ran.nextInt(lines.size() - 1));
+        strName = lines.get(ran.nextInt(lines.size()));
 
         return strName;
     }
@@ -128,7 +128,7 @@ public class UserCharacter
 
         fileScanner.close();
 
-        strRace = lines.get(ran.nextInt(lines.size() - 1));
+        strRace = lines.get(ran.nextInt(lines.size()));
 
         return strRace;
     }
@@ -148,7 +148,7 @@ public class UserCharacter
 
         fileScanner.close();
 
-        strClass = lines.get(ran.nextInt(lines.size() - 1));
+        strClass = lines.get(ran.nextInt(lines.size()));
 
         return strClass;
     }
@@ -168,7 +168,7 @@ public class UserCharacter
 
         fileScanner.close();
 
-        strBackground = lines.get(ran.nextInt(lines.size() - 1));
+        strBackground = lines.get(ran.nextInt(lines.size()));
 
         return strBackground;
     }
@@ -180,7 +180,7 @@ public class UserCharacter
         String strAlignment;
         Random ran = new Random();
 
-        strAlignment = alignments[ran.nextInt(8)];
+        strAlignment = alignments[ran.nextInt(9)];
 
         return strAlignment;
     }

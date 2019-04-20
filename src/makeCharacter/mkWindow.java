@@ -13,6 +13,8 @@ package makeCharacter;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class mkWindow extends JFrame
 {
@@ -34,6 +36,7 @@ public class mkWindow extends JFrame
         info = new InfoPanel(c);
         portrait = new CharacterPortrait(c);
         generate = new JButton("Generate!");
+        generate.addActionListener(new GenerateListener());
         export = new JButton("Export");
         buttonPanel = new JPanel();
         buttonPanel.add(generate);
@@ -50,4 +53,20 @@ public class mkWindow extends JFrame
 
 		setVisible(true);
 	}
+
+	private class GenerateListener implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            remove(info);
+            remove(portrait);
+            UserCharacter d = new UserCharacter();
+            info = new InfoPanel(d);
+            portrait = new CharacterPortrait(d);
+            add(info, BorderLayout.WEST);
+            add(portrait, BorderLayout.EAST);
+            validate();
+            repaint();
+        }
+    }
 }
