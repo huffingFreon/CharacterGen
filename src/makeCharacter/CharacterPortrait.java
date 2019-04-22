@@ -1,18 +1,46 @@
+/*
+ * ---------------------------------------------------------------------------
+ * File name: CharacterPortrait.java
+ * Project name: CharacterGen
+ * ---------------------------------------------------------------------------
+ * Creator's name and email: Ben Higgins, higginsba@etsu.edu
+ * Course:  CSCI 1260
+ * Creation Date: 4/20/19
+ * ---------------------------------------------------------------------------
+ */
+
 package makeCharacter;
 
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Extends JPanel to produce a scaled image according to the chClass of the UserCharacter passed
+ *
+ * Date Created: Apr 20, 2019
+ *
+ * @author Ben Higgins
+ */
 public class CharacterPortrait extends JPanel
 {
+    /**
+     * CharacterPortrait constructor that displays a scaled image from a relative path, depending on what
+     * value is in chClass of the UserCharacter passed.
+     *
+     * Date Created: Apr 20, 2019
+     *
+     * @param c UserCharacter whose class is to be determined
+     */
     public CharacterPortrait(UserCharacter c)
     {
+        //Call to create the base JPanel
         super();
 
         setLayout(new BorderLayout());
 
         JLabel portrait = new JLabel();
 
+        //Sets the JLabel's Icon to an image corresponding with the chClass String returned from c
         switch(c.getChClass())
         {
             case "Barbarian":
@@ -66,11 +94,12 @@ public class CharacterPortrait extends JPanel
             default:
                 portrait.setIcon(new ImageIcon("CharacterPortraits/TinyBase.jpg"));
                 break;
-        }
+        }//end switch()
 
+        //Adds the JLabel and RigidAreas to the panel for uniform spacing
         add(Box.createRigidArea(new Dimension(0, 25)), BorderLayout.NORTH);
         add(Box.createRigidArea(new Dimension(0, 25)), BorderLayout.SOUTH);
         add(Box.createRigidArea(new Dimension(15, 0)), BorderLayout.EAST);
         add(portrait, BorderLayout.CENTER);
-    }
-}
+    }//end CharacterPortrait(UserCharacter)
+}//end CharacterPortrait
