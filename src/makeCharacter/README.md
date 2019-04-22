@@ -1,2 +1,2 @@
-# mkChar
+# CharacterGen
 
